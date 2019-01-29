@@ -2,13 +2,29 @@ package com.rajkumar.hackerrank.arrays;
 
 import java.util.Scanner;
 
+import static java.lang.Math.max;
+
 //https://www.hackerrank.com/challenges/new-year-chaos/problem
 public class NewYearChaos {
 
     // Complete the minimumBribes function below.
-    static void minimumBribes(int[] q) {
-
-
+            static void minimumBribes(int[] q) {
+                int result = 0;
+                for(int i=0; i < q.length; i++) {
+                    int pos = q[i] - (i+1);
+                    if( pos > 2) {
+                        System.out.println("Too chaotic");
+                        return;
+                    } else {
+                      //  if( pos < 0) {
+                            for(int j=max(0,q[i]-2); j < i;j++) {
+                                if(q[j] > q[i])
+                                    result++;
+                            }
+                     //   }
+                    }
+                }
+        System.out.println(result);
     }
 
     private static final Scanner scanner = new Scanner(System.in);
