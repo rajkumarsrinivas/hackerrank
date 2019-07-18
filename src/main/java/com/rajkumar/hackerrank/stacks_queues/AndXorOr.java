@@ -2,6 +2,7 @@ package com.rajkumar.hackerrank.stacks_queues;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class AndXorOr {
 
@@ -12,8 +13,24 @@ public class AndXorOr {
         /*
          * Write your code here.
          */
+        int result;
+        Stack<Integer> stack = new Stack<>();
+        result = a[0] ^ a[1];
 
-
+        for(int i=0; i< a.length; i++) {
+            while(!stack.isEmpty()) {
+                int top = stack.peek();
+                int temp = a[i] ^ top;
+                if(temp > result) {
+                    result = temp;
+                }
+                if(a[i] < top) {
+                    stack.pop();
+                }
+            }
+            stack.push(a[i]);
+        }
+        return result;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
